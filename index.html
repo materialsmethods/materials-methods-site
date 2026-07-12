@@ -28,9 +28,30 @@
     <button class="chip" data-filter="clothing">Clothing</button>
     <button class="chip" data-filter="housewares">Housewares</button>
 </div>
+<div class="filters-row">
+  
+  <select id="f-size" aria-label="Any size">
+    <option value="">Any size</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+    <option value="M">M</option>
+    <option value="S">S</option>
+  </select>
+  
+  <select id="f-mat" aria-label="Any material">
+    <option value="">Any material</option>
+    <option value="cashmere">Cashmere</option>
+    <option value="cast iron">Cast iron</option>
+    <option value="cotton">Cotton</option>
+    <option value="elastane">Elastane</option>
+    <option value="enamel">Enamel</option>
+    <option value="polyester">Polyester</option>
+    <option value="viscose">Viscose</option>
+  </select>
+</div>
 <section class="grid">
 <a class="card" href="items/aritzia-wilfred-blazer-m/"
-   data-category="clothing" data-size="M">
+   data-category="clothing" data-size="M" data-materials="viscose polyester elastane">
   <div class="card-img"><img src="photos/aritzia-wilfred-blazer-m/1.svg" alt="Aritzia Wilfred Blazer" loading="lazy"></div>
   <div class="card-body">
     <h3>Aritzia Wilfred Blazer</h3>
@@ -39,7 +60,7 @@
   </div>
 </a>
 <a class="card" href="items/everlane-cashmere-crew-s/"
-   data-category="clothing" data-size="S">
+   data-category="clothing" data-size="S" data-materials="cashmere">
   <div class="card-img"><img src="photos/everlane-cashmere-crew-s/1.svg" alt="Everlane Cashmere Crew Sweater" loading="lazy"><span class="badge badge-hold">On hold</span></div>
   <div class="card-body">
     <h3>Everlane Cashmere Crew Sweater</h3>
@@ -48,7 +69,7 @@
   </div>
 </a>
 <a class="card" href="items/le-creuset-dutch-oven/"
-   data-category="housewares" data-size="5.3 L / 26 cm">
+   data-category="housewares" data-size="5.3 L / 26 cm" data-materials="cast iron enamel">
   <div class="card-img"><img src="photos/le-creuset-dutch-oven/1.svg" alt="Le Creuset Round Dutch Oven, 5.3 L" loading="lazy"></div>
   <div class="card-body">
     <h3>Le Creuset Round Dutch Oven, 5.3 L</h3>
@@ -57,8 +78,8 @@
   </div>
 </a>
 <a class="card" href="items/madewell-skinny-jeans-29/"
-   data-category="clothing" data-size="29">
-  <div class="card-img"><img src="photos/madewell-skinny-jeans-29/1.svg" alt="Madewell High-Rise Skinny Jeans" loading="lazy"></div>
+   data-category="clothing" data-size="29" data-materials="cotton elastane">
+  <div class="card-img"><img src="photos/madewell-skinny-jeans-29/0-stock.svg" alt="Madewell High-Rise Skinny Jeans" loading="lazy"></div>
   <div class="card-body">
     <h3>Madewell High-Rise Skinny Jeans</h3>
     <p class="card-meta">Madewell · 29</p>
@@ -66,7 +87,7 @@
   </div>
 </a>
 <a class="card is-sold" href="items/levis-501-30/"
-   data-category="clothing" data-size="30">
+   data-category="clothing" data-size="30" data-materials="cotton">
   <div class="card-img"><img src="photos/levis-501-30/1.svg" alt="Levi&#39;&#39;s 501 Original Jeans" loading="lazy"><span class="badge badge-sold">Sold</span></div>
   <div class="card-body">
     <h3>Levi&#39;&#39;s 501 Original Jeans</h3>
@@ -76,14 +97,25 @@
 </a>
 </section>
 <script>
+const fSize = document.getElementById('f-size');
+const fMat = document.getElementById('f-mat');
+function applyFilters() {
+  const cat = document.querySelector('.chip.is-active').dataset.filter;
+  const size = fSize ? fSize.value : '';
+  const mat = fMat ? fMat.value : '';
+  document.querySelectorAll('.card').forEach(card => {
+    const ok = (cat === 'all' || card.dataset.category === cat)
+      && (!size || card.dataset.size === size)
+      && (!mat || card.dataset.materials.split(' ').includes(mat));
+    card.style.display = ok ? '' : 'none';
+  });
+}
 document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
   ch.classList.add('is-active');
-  const f = ch.dataset.filter;
-  document.querySelectorAll('.card').forEach(card => {
-    card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
-  });
+  applyFilters();
 }));
+[fSize, fMat].forEach(el => el && el.addEventListener('change', applyFilters));
 </script>
 </main>
 <footer class="footer">

@@ -98,6 +98,33 @@ main { max-width: 1080px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
 .chip:hover { border-color: var(--accent); color: var(--ink); }
 .chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
+.filters-row { display: flex; justify-content: center; gap: 0.6rem; margin: -0.6rem 0 1.5rem; flex-wrap: wrap; }
+
+.filters-row select {
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+}
+
+.filters-row select:hover, .filters-row select:focus { border-color: var(--accent); color: var(--ink); }
+
+.item-gallery figure { margin: 0; }
+
+.item-gallery figcaption {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 0.35rem;
+  text-align: center;
+}
+
 /* ---------- grid + cards ---------- */
 
 .grid {
