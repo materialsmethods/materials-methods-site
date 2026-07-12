@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Materials &amp; Methods</title>
+<meta name="description" content="Secondhand clothes &amp; home goods in Waterloo, ON. Porch pickup · e-transfer or cash.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="masthead">
+  <a class="wordmark" href="./">Materials <span class="amp">&amp;</span> Methods</a>
+  <p class="tagline">a study in letting go</p>
+  <p class="meta-line">Lakeshore North, Waterloo · porch pickup · e-transfer or cash</p>
+  <nav class="nav">
+    <a href="./">Shop</a>
+    <a href="archive/">Sold</a>
+    <a href="about/">How it works</a>
+  </nav>
+</header>
+<main>
+
+<div class="chips">
+    <button class="chip is-active" data-filter="all">All</button>
+    <button class="chip" data-filter="clothing">Clothing</button>
+    <button class="chip" data-filter="housewares">Housewares</button>
+</div>
+<section class="grid">
+<a class="card" href="items/aritzia-wilfred-blazer-m/"
+   data-category="clothing" data-size="M">
+  <div class="card-img"><img src="photos/aritzia-wilfred-blazer-m/1.svg" alt="Aritzia Wilfred Blazer" loading="lazy"></div>
+  <div class="card-body">
+    <h3>Aritzia Wilfred Blazer</h3>
+    <p class="card-meta">Aritzia · M</p>
+    <p><span class="price">$40</span> <s class="orig">$148</s></p>
+  </div>
+</a>
+<a class="card" href="items/everlane-cashmere-crew-s/"
+   data-category="clothing" data-size="S">
+  <div class="card-img"><img src="photos/everlane-cashmere-crew-s/1.svg" alt="Everlane Cashmere Crew Sweater" loading="lazy"><span class="badge badge-hold">On hold</span></div>
+  <div class="card-body">
+    <h3>Everlane Cashmere Crew Sweater</h3>
+    <p class="card-meta">Everlane · S</p>
+    <p><span class="price">$45</span> <s class="orig">$165</s></p>
+  </div>
+</a>
+<a class="card" href="items/le-creuset-dutch-oven/"
+   data-category="housewares" data-size="5.3 L / 26 cm">
+  <div class="card-img"><img src="photos/le-creuset-dutch-oven/1.svg" alt="Le Creuset Round Dutch Oven, 5.3 L" loading="lazy"></div>
+  <div class="card-body">
+    <h3>Le Creuset Round Dutch Oven, 5.3 L</h3>
+    <p class="card-meta">Le Creuset</p>
+    <p><span class="price">$180</span> <s class="orig">$460</s></p>
+  </div>
+</a>
+<a class="card" href="items/madewell-skinny-jeans-29/"
+   data-category="clothing" data-size="29">
+  <div class="card-img"><img src="photos/madewell-skinny-jeans-29/1.svg" alt="Madewell High-Rise Skinny Jeans" loading="lazy"></div>
+  <div class="card-body">
+    <h3>Madewell High-Rise Skinny Jeans</h3>
+    <p class="card-meta">Madewell · 29</p>
+    <p><span class="price">$35</span> <s class="orig">$128</s></p>
+  </div>
+</a>
+<a class="card is-sold" href="items/levis-501-30/"
+   data-category="clothing" data-size="30">
+  <div class="card-img"><img src="photos/levis-501-30/1.svg" alt="Levi&#39;&#39;s 501 Original Jeans" loading="lazy"><span class="badge badge-sold">Sold</span></div>
+  <div class="card-body">
+    <h3>Levi&#39;&#39;s 501 Original Jeans</h3>
+    <p class="card-meta">Levi&#39;&#39;s · 30</p>
+    <p><span class="price">$28</span></p>
+  </div>
+</a>
+</section>
+<script>
+document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
+  ch.classList.add('is-active');
+  const f = ch.dataset.filter;
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
+  });
+}));
+</script>
+</main>
+<footer class="footer">
+  <p>Materials &amp; Methods — Secondhand clothes &amp; home goods in Waterloo, ON. Porch pickup · e-transfer or cash.</p>
+  <p><a href="mailto:hello@materialsmethods.ca">hello@materialsmethods.ca</a></p>
+</footer>
+</body>
+</html>

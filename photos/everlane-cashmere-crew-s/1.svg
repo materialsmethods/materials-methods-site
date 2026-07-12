@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#e4dee8"/>
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#1f1f1d" stroke-opacity="0.15" stroke-width="2"/>
+  <text x="400" y="480" text-anchor="middle" font-family="Georgia, serif" font-size="44" fill="#1f1f1d" fill-opacity="0.55">Cashmere Crew</text>
+  <text x="400" y="540" text-anchor="middle" font-family="Georgia, serif" font-size="22" letter-spacing="4" fill="#1f1f1d" fill-opacity="0.35">PLACEHOLDER PHOTO</text>
+</svg>
