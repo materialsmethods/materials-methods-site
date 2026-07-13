@@ -30,6 +30,7 @@
 </div>
 <div class="filters-row">
   
+  
   <select id="f-type" aria-label="Any type">
     <option value="">Any type</option>
     <option value="cookware">Cookware</option>
@@ -69,7 +70,7 @@
 </div>
 <section class="grid">
 <a class="card" href="items/aritzia-wilfred-blazer-m/"
-   data-category="clothing" data-type="jacket" data-brand="Aritzia" data-size="M" data-materials="viscose polyester elastane">
+   data-category="clothing" data-type="jacket" data-brand="Aritzia" data-department="womens" data-size="M" data-materials="viscose polyester elastane">
   <div class="card-img"><img src="photos/aritzia-wilfred-blazer-m/1.svg" alt="Aritzia Wilfred Blazer" loading="lazy"></div>
   <div class="card-body">
     <h3>Aritzia Wilfred Blazer</h3>
@@ -78,7 +79,7 @@
   </div>
 </a>
 <a class="card" href="items/babaton-elliot-pants-6/"
-   data-category="clothing" data-type="pants" data-brand="Babaton (Aritzia)" data-size="US 6" data-materials="cotton nylon elastane">
+   data-category="clothing" data-type="pants" data-brand="Babaton (Aritzia)" data-department="womens" data-size="US 6" data-materials="cotton nylon elastane">
   <div class="card-img"><img src="photos/babaton-elliot-pants-6/1.webp" alt="Babaton Elliot Pants" loading="lazy"></div>
   <div class="card-body">
     <h3>Babaton Elliot Pants</h3>
@@ -87,7 +88,7 @@
   </div>
 </a>
 <a class="card" href="items/everlane-cashmere-crew-s/"
-   data-category="clothing" data-type="sweater" data-brand="Everlane" data-size="S" data-materials="cashmere">
+   data-category="clothing" data-type="sweater" data-brand="Everlane" data-department="womens" data-size="S" data-materials="cashmere">
   <div class="card-img"><img src="photos/everlane-cashmere-crew-s/1.svg" alt="Everlane Cashmere Crew Sweater" loading="lazy"><span class="badge badge-hold">On hold</span></div>
   <div class="card-body">
     <h3>Everlane Cashmere Crew Sweater</h3>
@@ -96,7 +97,7 @@
   </div>
 </a>
 <a class="card" href="items/le-creuset-dutch-oven/"
-   data-category="housewares" data-type="cookware" data-brand="Le Creuset" data-size="5.3 L / 26 cm" data-materials="cast iron enamel">
+   data-category="housewares" data-type="cookware" data-brand="Le Creuset" data-department="" data-size="5.3 L / 26 cm" data-materials="cast iron enamel">
   <div class="card-img"><img src="photos/le-creuset-dutch-oven/1.svg" alt="Le Creuset Round Dutch Oven, 5.3 L" loading="lazy"></div>
   <div class="card-body">
     <h3>Le Creuset Round Dutch Oven, 5.3 L</h3>
@@ -105,7 +106,7 @@
   </div>
 </a>
 <a class="card" href="items/madewell-skinny-jeans-29/"
-   data-category="clothing" data-type="pants" data-brand="Madewell" data-size="29" data-materials="cotton elastane">
+   data-category="clothing" data-type="pants" data-brand="Madewell" data-department="womens" data-size="29" data-materials="cotton elastane">
   <div class="card-img"><img src="photos/madewell-skinny-jeans-29/0-stock.svg" alt="Madewell High-Rise Skinny Jeans" loading="lazy"></div>
   <div class="card-body">
     <h3>Madewell High-Rise Skinny Jeans</h3>
@@ -119,6 +120,7 @@ const fSize = document.getElementById('f-size');
 const fMat = document.getElementById('f-mat');
 const fType = document.getElementById('f-type');
 const fBrand = document.getElementById('f-brand');
+const fDept = document.getElementById('f-dept');
 function applyFilters() {
   const cat = document.querySelector('.chip.is-active').dataset.filter;
   const size = fSize ? fSize.value : '';
@@ -130,7 +132,9 @@ function applyFilters() {
       && (!size || card.dataset.size === size)
       && (!mat || card.dataset.materials.split(' ').includes(mat))
       && (!type || card.dataset.type === type)
-      && (!brand || card.dataset.brand === brand);
+      && (!brand || card.dataset.brand === brand)
+      && (!fDept || !fDept.value || card.dataset.department === fDept.value
+          || card.dataset.department === 'unisex' || card.dataset.department === '');
     card.style.display = ok ? '' : 'none';
   });
 }
@@ -139,7 +143,7 @@ document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', ()
   ch.classList.add('is-active');
   applyFilters();
 }));
-[fSize, fMat, fType, fBrand].forEach(el => el && el.addEventListener('change', applyFilters));
+[fSize, fMat, fType, fBrand, fDept].forEach(el => el && el.addEventListener('change', applyFilters));
 </script>
 </main>
 <footer class="footer">
