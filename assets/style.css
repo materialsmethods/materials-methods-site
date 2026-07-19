@@ -114,6 +114,20 @@ main { max-width: 1080px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
 
 .filters-row select:hover, .filters-row select:focus { border-color: var(--accent); color: var(--ink); }
 
+.filters-row input[type="search"] {
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  width: 11rem;
+}
+.filters-row input[type="search"]:hover, .filters-row input[type="search"]:focus { border-color: var(--accent); outline: none; }
+.filters-row input[type="search"]::placeholder { color: var(--ink-soft); }
+
 .item-gallery figure { margin: 0; }
 
 .item-gallery figcaption {

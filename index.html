@@ -28,6 +28,7 @@
     <button class="chip" data-filter="clothing">Clothing</button>
 </div>
 <div class="filters-row">
+  <input type="search" id="f-search" placeholder="Search…" aria-label="Search items">
   
   
   
@@ -42,7 +43,7 @@
 </div>
 <section class="grid">
 <a class="card" href="items/babaton-elliot-pants-6/"
-   data-category="clothing" data-type="pants" data-brand="Aritzia (Babaton)" data-department="womens" data-size="US 6" data-materials="cotton nylon elastane">
+   data-category="clothing" data-type="pants" data-brand="Aritzia (Babaton)" data-department="womens" data-size="US 6" data-materials="cotton nylon elastane" data-search="babaton elliot pants aritzia (babaton) pants black us 6 49% cotton, 43% nylon, 8% elastane excellent">
   <div class="card-img"><img src="photos/babaton-elliot-pants-6/1.webp" alt="Babaton Elliot Pants" loading="lazy"></div>
   <div class="card-body">
     <h3>Babaton Elliot Pants</h3>
@@ -57,12 +58,15 @@ const fMat = document.getElementById('f-mat');
 const fType = document.getElementById('f-type');
 const fBrand = document.getElementById('f-brand');
 const fDept = document.getElementById('f-dept');
+const fSearch = document.getElementById('f-search');
 function applyFilters() {
   const cat = document.querySelector('.chip.is-active').dataset.filter;
   const size = fSize ? fSize.value : '';
   const mat = fMat ? fMat.value : '';
   const type = fType ? fType.value : '';
   const brand = fBrand ? fBrand.value : '';
+  // Every word typed must appear somewhere in the card's search text.
+  const terms = (fSearch ? fSearch.value : '').toLowerCase().split(/\s+/).filter(Boolean);
   document.querySelectorAll('.card').forEach(card => {
     const ok = (cat === 'all' || card.dataset.category === cat)
       && (!size || card.dataset.size === size)
@@ -70,10 +74,12 @@ function applyFilters() {
       && (!type || card.dataset.type === type)
       && (!brand || card.dataset.brand === brand)
       && (!fDept || !fDept.value || card.dataset.department === fDept.value
-          || card.dataset.department === 'unisex' || card.dataset.department === '');
+          || card.dataset.department === 'unisex' || card.dataset.department === '')
+      && terms.every(t => card.dataset.search.includes(t));
     card.style.display = ok ? '' : 'none';
   });
 }
+if (fSearch) fSearch.addEventListener('input', applyFilters);
 document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('is-active'));
   ch.classList.add('is-active');
