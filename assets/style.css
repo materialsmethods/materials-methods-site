@@ -240,7 +240,12 @@ main { max-width: 1080px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
 
 /* ---------- claim panel ---------- */
 
-.claim { background: #f7f6f1; border: 1px solid var(--line); padding: 1.2rem; }
+.claim { margin-top: 0.4rem; }
+.claim-note a { color: var(--ink-soft); }
+.claim-note a:hover { color: var(--ink); }
+
+.item-description { margin: 0 0 1.5rem; line-height: 1.6; }
+.orig-label { color: var(--ink-soft); font-size: 0.8rem; font-family: 'Inter', sans-serif; }
 
 .btn {
   display: inline-block;
